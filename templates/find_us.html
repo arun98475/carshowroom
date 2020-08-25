@@ -1,0 +1,117 @@
+<!DOCKTYPE html>
+{% load static %}
+
+<head>
+    <title>TATA</title>
+    <link rel="stylesheet" href="{% static "css/stylesheet.css" %}">
+	 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static "js/jss.js" %}"></script>
+	
+    <style>
+   
+#tabl{
+position:absolute;
+left:8%;
+top:30%;
+width:30%;
+border-radius:8px;
+opacity:.90;
+
+
+}
+
+ </style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<p class="text-primary" style="position:fixed;right:1%;bottom:0%;">Current user:{{user}}</p>
+    </head>
+     </header>  
+	 
+       
+		<nav class="navbar navbar-expand-sm bg-light" style="position:fixed;width:100%;z-index:1">
+		<ul class="navbar-nav">
+		   <div style="position:relative;left:7%">
+            <h1><span class="badge badge-secondary"><a href="home" class="text-white">Home</a></span>
+                <span class="badge badge-secondary"><a href="car" class="text-white">Car</a></span>
+                <span class="badge badge-secondary"><a href="gallery" class="text-white">Gallery</a></span>
+                <span class="badge badge-secondary"><a href="book_now" class="text-white">Book Now</a></span>
+				<span class="badge badge-secondary"><a href="login" class="text-white">{{log}}</a></span>
+                <span class="badge badge-secondary"><a href="find_us" class="text-white">Find Us</a></span>
+                <span class="badge badge-secondary"><a href="contact_us" class="text-white">Contact Us</a></span>
+				
+			</div>	
+			 </ul>
+			 </nav>
+        
+    </header>
+	    <body>
+		<div id="slide-container"></div>
+		<table class="table table-dark table-striped border border-primary rounded" id="tabl">
+    
+    <tbody>
+      <tr><td>Sharon Tower</td></tr>
+	  <tr><td>CC No.52/3171</td></tr>
+	  <tr><td> 3172, Opp. Salafi Masjid</td></tr>
+	  <tr><td>Vyttila,</td></tr>
+	  <tr><td>Ernakulam</td></tr>
+	  <tr><td>Kerala 682019</td></tr>
+        
+        
+      
+    </tbody>
+  </table>
+   
+<div class="testdrive">
+		<button class="btn btn-primary"  data-toggle="modal" onclick="start_testdrive()">
+        <span class="spinner-grow spinner-grow-sm"></span>
+         BOOK A TEST DRIVE NOW
+         </button>
+		</div>
+<div class="modal fade" id="testdrive_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><span class="badge badge-info">Book for Test Drive</span></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <table class="table table-dark">
+    <tbody>
+      <tr><td>Your Name</td><td><input type="text" class="form-control" id="testdrive_name"></td>
+	  <tr><td>Email</td><td><input type="text" class="form-control" id="testdrive_email"></td>
+	  <tr><td>Contact No</td><td><input type="text" class="form-control" id="testdrive_contact"></td>
+	  <tr><td>Prefered date</td><td><input type="date" id="date"></td>
+	  <tr><td>Message</td><td><textarea class="form-control" rows="5" id="testdrive_message"></textarea></td>
+	  
+	  <tr><td><button type="button" class="btn btn-primary  btn" id="testdrive_but" data-toggle="modal" data-target="#myModal">Submit</button></td><td></td>
+      </tr>
+    </tbody>
+  </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+		
+		</body>
+
+        
+
+        </html>

@@ -1,0 +1,364 @@
+<!DOCKTYPE html>
+{% load static %}
+
+<head>
+    <title>TATA</title>
+    <link rel="stylesheet" href="{% static "css/stylesheet.css" %}">
+	 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static "js/jss.js" %}"></script>
+    <style>
+    body {
+    background-color:blue;
+}
+
+
+ </style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    </head>
+     </header>  
+	 
+       
+		<nav class="navbar navbar-expand-sm bg-light">
+		<ul class="navbar-nav">
+		   <div style="position:relative;left:7%">
+            <h1><span class="badge badge-secondary"><a href="home" class="text-white">Home</a></span>
+                <span class="badge badge-secondary"><a href="car" class="text-white">Car</a></span>
+                <span class="badge badge-secondary"><a href="gallery" class="text-white">Gallery</a></span>
+                <span class="badge badge-secondary"><a href="book_now" class="text-white">Book Now</a></span>
+				<span class="badge badge-secondary"><a href="login" class="text-white">{{log}}</a></span>
+                <span class="badge badge-secondary"><a href="find_us" class="text-white">Find Us</a></span>
+                <span class="badge badge-secondary"><a href="contact_us" class="text-white">Contact Us</a></span>
+			
+			</div>	
+			 </ul>
+			 </nav>
+        
+    </header>
+	    <body>
+		<div class="container mt-3">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#home">Booked</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu1">Contacts</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu2">Testdrive</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu3">Add Car</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu4">Car Details</a>
+    </li>
+	<li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#menu5">My Profile</a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div id="home" class="container tab-pane active"><br>
+      <table class="table table-dark table-hover" id="cont">
+                <tbody>
+				<thead>
+				 <tr><td>Slno</td>
+				 <td>Name</td>
+				 <td>Email</td>
+				 <td>Phone</td>
+				 <td style="display:none;">House Name</td>
+				 <td style="display:none;">Town</td>
+				 <td style="display:none;">Distric</td>
+				 <td style="display:none;">State</td>
+				 <td style="display:none;">Booked Car</td>
+				 <td style="display:none;">Approval</td></tr>
+				</thead>
+				   {% for i in details %}
+				   <tr><td>{{i.slno}}</td>
+				   <td>{{i.name}}</td>
+				   <td>{{i.email}}</td>
+				   <td>{{i.phone}}</td>
+				   <td style="display:none;">{{i.house_name}}</td>
+				   <td style="display:none;">{{i.town}}</td>
+				   <td style="display:none;">{{i.distric}}</td>
+				   <td style="display:none;">{{i.state}}</td>
+				   <td style="display:none;">{{i.booked_car}}</td>
+				   <td style="display:none;">{{i.approval}}</td>
+				   <td><button type="button" id={{i.slno}} class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" onclick="fun(this)">View</button></td>
+				   <td><button type="button" class="btn btn-danger btn-sm" onclick="Reg_Del(this)">Delete</button></td>
+				   
+				   </tr>
+                    {%  endfor  %}
+                </tbody>
+		</table>
+	  
+	  </div>
+    <div id="menu1" class="container tab-pane fade"><br>
+      <table class="table table-dark table-hover"  id="contact_list">
+                <tbody>
+				<thead>
+				 <tr><td>Slno</td><td>Name</td><td>Email</td><td>Contact</td><td>Time of Contact</td><td>Message</td></tr>
+				</thead>
+				   {% for i in contacts %}
+				   <tr><td>{{i.slno}}</td>
+				   <td>{{i.name}}</td>
+				   <td>{{i.email}}</td>
+				   <td>{{i.contact}}</td>
+				   <td>{{i.contact_time}}</td>
+				   <td>{{i.message}}</td>
+				   <td><button type="button" class="btn btn-danger btn-sm" onclick="Contact_Del(this)">Delete</button></td>
+
+				   </tr>
+                    {%  endfor  %}
+                </tbody>
+		</table>
+		</div>
+    <div id="menu2" class="container tab-pane fade"><br>
+    <table class="table table-dark table-hover" id="testdrive_list">
+                <tbody>
+				<thead>
+				 <tr><td>Slno</td><td>Name</td><td>Email</td><td>Contact</td><td>Date</td><td>Message</td></tr>
+				</thead>
+				   {% for i in drive %}
+				   <tr><td>{{i.slno}}</td>
+				   <td>{{i.name}}</td>
+				   <td>{{i.email}}</td>
+				   <td>{{i.contact}}</td>
+				   <td>{{i.date}}</td>
+				   <td>{{i.message}}</td>
+                   <td><button type="button" class="btn btn-danger btn-sm" onclick="rowDelete(this)">Delete</button></td>
+				   </tr>
+                    {%  endfor  %}
+                </tbody>
+		</table></div>
+	<div id="menu3" class="container tab-pane fade"><br>
+      <div class="container">            
+  <table class="table table-dark">
+    <tbody>
+	<thead><tr><td><h2>Enter car details</h2></td></tr></thead>
+	<form action="admin_entry" method="post" enctype="multipart/form-data" id="uploadData">
+      <tr><td>Car Name</td><td><input type="text" class="form-control" name="car_name" id="addCar"></td>
+	  <td>Photo1</td><td><input type="file" name="photo1" id="addPhoto1"></td></tr>
+	  <tr><td>Variants</td><td><input type="text" class="form-control" name="variants" id="addVariants"></td>
+	  <td>Photo2</td><td><input type="file" name="photo2" id="addPhoto2"></td></tr>
+	  <tr><td>BHP</td><td><input type="text" class="form-control" name="bhp" id="addBhp"></td>
+	  <td>Photo3</td><td><input type="file" name="photo3" id="addPhoto3"></td></tr>
+	  <tr><td>Engine Capacity(cc)</td><td><input type="text" class="form-control" name="cc" id="addCc"></td>
+	  <td>Photo4</td><td><input type="file" name="photo4" id="addPhoto4"></td></tr>
+	  <tr><td>Transmission</td><td><select class="form-control" name="transmission" id="addtrans">
+	                               <option value="Automatic">Automatic</option>
+								   <option value="Manual">Manual</option></select></td>
+	  <td>Fuel</td><td><select class="form-control" name="fuel"  id="addFuel">
+	                   <option value="Petrol">Petrol</option>
+					   <option value="Diesel">Diesel</option><option value="Eletric">Electric</option></select></td></tr>
+	  <tr><td><button type="submit" class="btn btn-primary  btn-lg" id="adminSubmit">Submit</button></td>
+	  <td></td><td>Price</td><td><input type="text" class="form-control" name="price"  id="addPrice"></tr>
+	  {% csrf_token %}
+     </form>
+      
+    </tbody>
+  </table>
+ </div>
+  </div>
+ <div id="menu4" class="container tab-pane fade"><br>
+    <table class="table table-dark table-hover" id="car_list">
+                <tbody>
+				<thead>
+				 <tr><td>Slno</td>
+				     <td>Car Name</td>
+					 <td>Variants</td>
+					 <td>BHP</td>
+					 <td>Engine Capacity(CC)</td>
+					 <td>Transmission</td>
+					 <td>Fuel</td>
+					 <td>Price</td>
+				 </tr>
+				</thead>
+				   {% for i in cars %}
+			   <tr><td>{{i.slno}}</td>
+				   <td>{{i.car_name}}</td>
+				   <td>{{i.variants}}</td>
+				   <td>{{i.bhp}}</td>
+				   <td>{{i.cc}}</td>
+				   <td>{{i.transmission}}</td>
+				   <td>{{i.fuel}}</td>
+				   <td>{{i.price}}</td>
+                   <td><button type="button" class="btn btn-danger btn-sm" onclick="Car_del(this)">Delete</button></td>
+				   <td><button type="button" class="btn btn-primary btn-sm" onclick="Car_upd(this)">Update</button></td>
+				</tr>
+                    {%  endfor  %}
+                </tbody>
+		    </table>
+		</div>
+<div id="menu5" class="container tab-pane fade"><br>
+    <table class="table table-dark table-hover" id="profileUpdation">
+                <tbody>
+				<thead><tr><td><h2><span class="badge badge-success">Your Profile:</span></h2></td>
+				       <td><button type="button" class="btn btn-warning" onclick="UpdateMyprofile()">Update</button></td></tr>
+			    <thead>
+				{% for me in me %}
+			<tr><td>ID NO:</td><td>{{me.slno}}</td></tr>
+				 <td>Name</td><td><input type="text" value={{me.name}} class="form-control" style="width:40%;" /></td></tr>
+				 <td>Email</td><td id="emailfield">{{me.email}}</td></tr>
+				 <td>Phone</td><td><input type="text" value={{me.phone}} class="form-control" style="width:40%;"/></td></tr>
+				 <td>House Name</td><td><input type="text" value={{me.house_name}} class="form-control" style="width:40%;"/></td></tr>
+				 <td>Town</td><td><input type="text" value={{me.town}} class="form-control" style="width:40%;" /></td></tr>
+				 <td>Distric</td><td><input type="text" value={{me.distric}} class="form-control" style="width:40%;"/></td></tr>
+				 <td>State</td><td><input type="text" value={{me.state}} class="form-control" style="width:40%;"/></td></tr>
+				 <td>Booked Car</td><td>{{me.booked_car}}</td></tr>
+				 <td>Approval</td><td>{{me.approval}}</td></tr>
+			    {%  endfor  %}
+				   
+                </tbody>
+		    </table>
+		</div>
+
+
+
+    </div>
+</div>
+  <!-- The Modal -->
+   <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><span class="badge badge-info" id="Name"></span></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+	   <table class="table table-dark">
+       <tbody>
+       <tr><td>Email</td><td id="email"></td></tr>
+	   <tr><td>Phone</td><td id="phone"></td></tr>
+	   <tr><td>House Name</td><td id="house_name"></td></tr>
+	   <tr><td>Town</td><td id="town"></td></tr>
+	   <tr><td>Distric</td><td id="distric"></td></tr>
+	   <tr><td>State</td><td id="state"></td></tr>
+	   <tr><td>Approvel</td><td id="approval"></td></tr>
+       </tbody>
+      </table>
+	   <button type="button" class="btn btn-success" id="appr">Approve</button>
+         </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+		<h5><span class="badge badge-info"><div id="booked_car"></div></span></h5>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
+  <!-- The Modal -->
+  <div class="modal fade" id="warning">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <h2>Are you sure, want to delete this?</h2>
+		  <h6 style="display:none;" id="temp_html"></h6>
+		  
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+		  <button type="button" class="btn btn-success btn" data-dismiss="modal" onclick="CAR_DEL('NO')" style="position:relative;right:58%">NO</button>
+		  <button type="button" class="btn btn-danger btn" data-dismiss="modal" onclick="CAR_DEL('YES')">YES</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+ 
+
+
+
+
+  <div class="modal fade" id="car_updation_model">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><span class="badge badge-info" id="Name">Car Details Updation</span></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+	   <table class="table table-dark">
+	    <form id="update_car" method="post" action="car_updations">
+       <tbody>
+	   <tr><td>Car Serial Number</td><td><input type="text" class="form-control form-control" name="car_slno_upd" id="car_slno_upd" disabled></td></tr>
+       <tr><td>Car Name</td><td><input type="text" class="form-control form-control" name="car_name_upd" id="car_name_upd"></td></tr>
+	   <tr><td>Variants</td><td><input type="text" class="form-control form-control" name="car_variants_upd" id="car_variants_upd"></td></tr>
+	   <tr><td>BHP</td><td><input type="text" class="form-control form-control" name="car_bhp_upd" id="car_bhp_upd"></td></tr>
+	   <tr><td>Engine Capacity(CC)</td><td><input type="text" class="form-control form-control" name="car_cc_upd" id="car_cc_upd"></td></tr>
+	   <tr><td>Transmission</td>
+	   <td><select name="car_transmission_upd" class="custom-select" id="car_transmission_upd" name="car_transmission_upd">
+	       <option value="automatic">Automatic</option>
+		   <option value="manual">Manual</option>
+		   </select>
+	   </td></tr>
+	   <tr><td>Fuel</td>
+	   <td><select name="car_fuel_upd" class="custom-select" id="car_fuel_upd" name="car_fuel_upd">
+	   <option value="petrol">Petrol</option>
+	   <option value="diesel">Diesel</option>
+	   <option value="electric">Electric</option>
+	   </select>
+	   </td></tr>
+	   <tr><td>Price</td><td><input type="text" class="form-control form-control" name="car_price_upd" id="car_price_upd"></td></tr>
+	   <tr><td><input type="submit" value="Update Details" class="btn btn-success" name="car_name_upd"/></td></tr>
+	   {% csrf_token %}
+       </tbody>
+	    </form>
+      </table>
+	  <table class="table table-dark">
+	    <form id="photo_car_update" method="post" action="car_photo_updation" enctype="multipart/form-data">
+       <tbody>
+	   <tr><td><div class="custom-file"><input type="file" class="custom-file-input" name="photo1"><label class="custom-file-label" for="customFile">Choose Photo1</label></div></td>
+	       <td><div class="custom-file"><input type="file" class="custom-file-input" name="photo2"><label class="custom-file-label" for="customFile">Choose Photo2</label></div></td></tr>
+	   <tr><td><div class="custom-file"><input type="file" class="custom-file-input" name="photo3"><label class="custom-file-label" for="customFile">Choose Photo3</label></div></td>
+	       <td><div class="custom-file"><input type="file" class="custom-file-input" name="photo4"><label class="custom-file-label" for="customFile">Choose Photo4</label></div></td></tr>
+	   <tr><td><input type="submit" value="Update Photo" class="btn btn-success"/></td></tr>
+		</tbody>
+		 {% csrf_token %}
+		</form>
+	     </table>
+         </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div> 
+
+
+</body>
+
+   </body>
+<script>
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>
+  </html>

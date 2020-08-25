@@ -1,0 +1,104 @@
+<!DOCKTYPE html>
+{% load static %}
+
+<head>
+    <title>TATA</title>
+    <link rel="stylesheet" href="{% static "css/stylesheet.css" %}">
+	 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static "js/jss.js" %}"></script>
+    <style>
+    body {
+    width: 100%;
+    background: url("{% static "image/background.png"%}");
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+}
+
+ </style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<p class="text-primary" style="position:fixed;right:1%;bottom:0%;z-index:1">Current user:{{datas.user}}</p>
+    </head>
+     </header>  
+	 
+       
+		<nav class="navbar navbar-expand-sm bg-light" style="position:fixed;width:100%;z-index:1">
+		<ul class="navbar-nav">
+		   <div style="position:relative;left:7%">
+            <h1><span class="badge badge-secondary"><a href="home" class="text-white">Home</a></span>
+                <span class="badge badge-secondary"><a href="car" class="text-white">Car</a></span>
+                <span class="badge badge-secondary"><a href="gallery" class="text-white">Gallery</a></span>
+                <span class="badge badge-secondary"><a href="book_now" class="text-white">Book Now</a></span>
+				<span class="badge badge-secondary"><a href="login" class="text-white">{{datas.log}}</a></span>
+                <span class="badge badge-secondary"><a href="find_us" class="text-white">Find Us</a></span>
+                <span class="badge badge-secondary"><a href="contact_us" class="text-white">Contact Us</a></span>
+				
+			</div>	
+			 </ul>
+			 </nav>
+        
+    </header>
+	    <body>
+		         
+  <table class="table table-borderless" style="position:absolute;top:10%;z-index:0;" id="im">
+    <tbody>
+	{% for i in photo %}
+      <tr>
+        <td><img src={{i.photo1.url}} onclick="viewLarge(this)" class="img-thumbnail" alt="TATA CARS" width="304" height="236"/></td>
+        <td><img src={{i.photo2.url}} onclick="viewLarge(this)" class="img-thumbnail" alt="TATA CARS" width="304" height="236"/> </td>
+        <td><img src={{i.photo3.url}} onclick="viewLarge(this)" class="img-thumbnail" alt="TATA CARS" width="304" height="236"/> </td>
+		<td><img src={{i.photo4.url}} onclick="viewLarge(this)" class="img-thumbnail" alt="TATA CARS" width="304" height="236"/> </td>
+      </tr>
+	  {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+<div class="container">
+
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+        
+        <!-- Modal body -->
+   
+		<div class="modal-body img-magnifier-container">
+         <img class="img-thumbnail" alt="TATA CARS" width="800" height="600" id="pic"/>
+        </div>
+	
+        
+        <!-- Modal footer -->
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+<script>
+
+function viewLarge(element){
+var ima=element.src;
+
+var pic=document.getElementById("pic");
+pic.src=ima;
+$('#myModal').modal('toggle');
+magnify("pic", 2);
+}
+
+</script>
+</body>
+</html>

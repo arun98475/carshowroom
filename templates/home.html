@@ -1,0 +1,201 @@
+<!DOCKTYPE html>
+{% load static %}
+
+<head>
+    <title>TATA</title>
+    <link rel="stylesheet" href="{% static "css/stylesheet.css" %}">
+	 <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="{% static "js/jss.js" %}"></script>
+    <style>
+
+ </style>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+ <p class="text-primary" style="position:fixed;right:1%;bottom:0%;">Current user:{{user}}</p>
+ <style>
+ .welcomepos{
+ position:absolute;
+ top:40%;
+ vertical-align:middle;
+ background-color:rgb(9,10,10);
+ opacity:0.7;
+ z-index:1;
+ 
+ }
+ #tableAnima{
+ position:absolute;
+ left:0%;
+ z-index:3;
+ 
+ }
+
+ .img-onclick{
+ position:absolute;
+  top:10%;
+  left:20%;
+ display:none;
+ z-index:4;
+ }
+ #close-button{
+ position:relative;
+ right:50px;
+ bottom:195px;
+ z-index:5;
+ border: none;
+ background-color:white;
+ border-radius:5px;
+ padding:0px 0px;
+ height:10px;
+ }
+
+
+  </style>
+    </head>
+     </header>  
+	 
+       
+		<nav class="navbar navbar-expand-sm bg-light"  style="position:fixed;width:100%;z-index:1">
+		<ul class="navbar-nav">
+		   <div style="position:relative;left:7%">
+            <h1><span class="badge badge-secondary"><a href="home" class="text-white">Home</a></span>
+                <span class="badge badge-secondary"><a href="car" class="text-white">Car</a></span>
+                <span class="badge badge-secondary"><a href="gallery" class="text-white">Gallery</a></span>
+                <span class="badge badge-secondary"><a href="book_now" class="text-white">Book Now</a></span>
+				<span class="badge badge-secondary"><a href="login" class="text-white">{{log}}</a></span>
+                <span class="badge badge-secondary"><a href="find_us" class="text-white">Find Us</a></span>
+                <span class="badge badge-secondary"><a href="contact_us" class="text-white">Contact Us</a></span>
+				<span class="badge badge-secondary"><a href="admin_user" class="text-white">Admin</a></span></h1>
+			</div>	
+			 </ul>
+			 </nav>
+        
+    </header>
+	    <body>
+		
+		<div class="img-onclick">
+		<img class = "img-thumbnail" id="img-onclick" width="800" height="600">
+		<button type="button" id="close-button" onclick="CloseButton()"><h2><span class="badge badge-light">&times;</span></h2></button>
+		</div>
+		
+		<div class="container-fluid welcomepos">
+		
+		<h1 class="display-3 font-weight-bold text-center text-white">WELCOME TO TATA MOTORS</h1>
+		 <table class="table table-borderless photoAnimation" id="tableAnima">
+         <tbody>
+		 <tr>
+		{% for i in photo %}
+		<td><img src={{i.photo1.url}} alt="TATA" width="100" height="50" onmouseover="Enlarge(this)" onmouseout="Reduce(this)" onclick="SelectedImage(this)"></td>
+		<td><img src={{i.photo2.url}} alt="TATA" width="100" height="50" onmouseover="Enlarge(this)" onmouseout="Reduce(this)" onclick="SelectedImage(this)"></td>
+		{% endfor %}
+		</tr>
+		</tbody>
+        </table>
+        </div>
+		</div>
+		<div id="slide-container"></div>
+		<div class="flashnews">
+		<div class="badge badge-pill badge-success">
+		<h2>We released our new electric version</h2>
+		</div>
+		</div>
+		<div class="testdrive">
+		<button class="btn btn-primary"  data-toggle="modal" onclick="start_testdrive()">
+        <span class="spinner-grow spinner-grow-sm"></span>
+         BOOK A TEST DRIVE NOW
+         </button>
+		</div>
+		<div class="container">
+
+  
+
+  <!-- The Modal -->
+  <div class="modal fade" id="testdrive_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title"><span class="badge badge-info">Book for Test Drive</span></h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <table class="table table-dark">
+    <tbody>
+	<form id="testdrive_form"  action="testdrive" method="post">
+	{% csrf_token %}
+      <tr><td>Your Name</td><td><input type="text" class="form-control" name="name"></td></tr>
+	  <tr><td>Email</td><td><input type="email" class="form-control" name="email"></td></tr>
+	  <tr><td>Contact No</td><td><input type="number" class="form-control" name="phone" min="1000000000" max="9999999999"></td></tr>
+	  <tr><td>Prefered date</td><td><input type="date" name="date"></td></tr>
+	  <tr><td>Message</td><td><textarea class="form-control" rows="5" name="message"></textarea></td></tr>
+	  <tr><td><input type="submit" class="btn btn-primary  btn"  value="Submit"></td><td></td></tr>
+     </form>
+	 
+    </tbody>
+  </table>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>
+ <script>
+    
+ $(document).ready(function motion(){
+    $("#tableAnima").animate({left:"0%"},0000);
+    $("#tableAnima").animate({left:"-10%"},6000);
+	$("#tableAnima").animate({left:"0%"},6000);
+	$("#tableAnima").promise().done(function(){
+	motion()});
+		
+
+});
+
+$("#tableAnima").hover(function(){
+   
+    $("#tableAnima").stop();
+      });
+
+
+
+ function Enlarge(elem){
+    elem.width=360;
+	elem.height=200;
+
+ }
+  function Reduce(elem){
+    elem.width=100;
+	elem.height=50;
+ }
+ function SelectedImage(e){
+    var imDiv=document.getElementsByClassName("img-onclick");
+    var im=document.getElementById("img-onclick");
+	im.src=e.src;
+	imDiv[0].style.display="block";
+	magnify("img-onclick", 2);
+ 
+ }
+ 
+ function CloseButton(){
+    var imDiv=document.getElementsByClassName("img-onclick");
+	imDiv[0].style.display="none";
+ }
+ 
+ </script>
+
+		</body>   
+
+        </html>

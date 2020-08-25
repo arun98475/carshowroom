@@ -1,0 +1,57 @@
+.flashnews {
+    position: absolute;
+    left: 1500px;
+    bottom: 10%;
+	opacity:0.7;
+}
+.testdrive {
+    position: absolute;
+    left: 1000px;
+    bottom: 20%;
+	opacity:0;
+}
+ .navbar-nav span:hover {
+	background-color: #4B4B4B;
+	
+}
+div:hover{
+	opacity:1.0;
+}
+
+#slide-container {
+  width: 100%;
+  height:600px;
+  object-fit:cover ;
+  position: relative;
+  left:5px;
+  z-index:-1;
+  animation: mymove 50s infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes mymove {
+  from  {background-image:url("slides/1.jpeg");}
+  12.5% {background-image:url("slides/2.jpeg");}
+  25.0% {background-image:url("slides/3.jpeg");}
+  37.5% {background-image:url("slides/4.jpeg");}
+  50.0% {background-image:url("slides/5.jpeg");}
+  72.5% {background-image:url("slides/6.jpeg");}
+  75.0% {background-image:url("slides/7.jpeg");}
+  87.0% {background-image:url("slides/8.jpeg");}
+  to    {background-image:url("slides/1.jpeg");}
+
+}
+
+.img-magnifier-glass {
+  position: absolute;
+  border: 3px solid #000;
+  border-radius: 50%;
+  cursor: none;
+  /*Set the size of the magnifier glass:*/
+  width: 100px;
+  height: 100px;
+}
+
+.img-magnifier-container {
+  position:relative;
+}
